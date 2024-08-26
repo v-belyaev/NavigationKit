@@ -10,12 +10,6 @@ public struct PresentAction: Equatable {
     
     // MARK: - Public
     
-    public enum PresentationStyle {
-        case sheet
-        case fullScreen
-        case detents([UISheetPresentationController.Detent])
-    }
-    
     @MainActor
     public func callAsFunction(
         transitionStyle: UIModalTransitionStyle = .coverVertical,
@@ -38,14 +32,9 @@ public struct PresentAction: Equatable {
     @MainActor
     public func callAsFunction(
         _ viewController: UIViewController,
-        transitionStyle: UIModalTransitionStyle = .coverVertical,
-        presentationStyle: UIModalPresentationStyle = .automatic,
         animated: Bool = true,
         completion: (() -> Void)? = nil
     ) {
-        viewController.modalTransitionStyle = transitionStyle
-        viewController.modalPresentationStyle = presentationStyle
-        
         self.viewController?.present(
             viewController,
             animated: animated,
