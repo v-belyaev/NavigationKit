@@ -18,14 +18,16 @@ public struct PresentAction: Equatable {
     
     @MainActor
     public func callAsFunction(
-        style: PresentationStyle = .sheet,
+        transitionStyle: UIModalTransitionStyle = .coverVertical,
+        presentationStyle: UIModalPresentationStyle = .automatic,
         animated: Bool = true,
         @ViewBuilder _ view: () -> some View,
         completion: (() -> Void)? = nil
     ) {
         let controller = UIHostingController(rootView: view().navigation())
+        controller.modalTransitionStyle = transitionStyle
+        controller.modalPresentationStyle = presentationStyle
         
-        self.setPresentationStyle(style, for: controller)
         self.viewController?.present(
             controller,
             animated: animated,
@@ -36,11 +38,14 @@ public struct PresentAction: Equatable {
     @MainActor
     public func callAsFunction(
         _ viewController: UIViewController,
-        style: PresentationStyle = .sheet,
+        transitionStyle: UIModalTransitionStyle = .coverVertical,
+        presentationStyle: UIModalPresentationStyle = .automatic,
         animated: Bool = true,
         completion: (() -> Void)? = nil
     ) {
-        self.setPresentationStyle(style, for: viewController)
+        viewController.modalTransitionStyle = transitionStyle
+        viewController.modalPresentationStyle = presentationStyle
+        
         self.viewController?.present(
             viewController,
             animated: animated,
@@ -51,24 +56,4 @@ public struct PresentAction: Equatable {
     // MARK: - Private
     
     private weak var viewController: UIViewController?
-    
-    @inline(__always)
-    private func setPresentationStyle(
-        _ style: PresentationStyle,
-        for viewController: UIViewController
-    ) {
-        switch style {
-        case .sheet, .detents(_):
-            viewController.modalPresentationStyle = .automatic
-        case .fullScreen:
-            viewController.modalPresentationStyle = .fullScreen
-        }
-        
-        if let sheetController = viewController.presentationController as? UISheetPresentationController,
-           case let (.detents(detents)) = style
-        {
-            sheetController.detents = detents
-            sheetController.prefersGrabberVisible = true
-        }
-    }
 }

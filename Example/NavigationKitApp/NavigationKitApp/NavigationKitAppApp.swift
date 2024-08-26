@@ -5,10 +5,10 @@ import NavigationKit
 struct NavigationKitAppApp: App {
     var body: some Scene {
         WindowGroup {
-            NavigationStack {
+            NavigationView {
                 ContentView()
-                    .navigation()
             }
+            .navigationViewStyle(.stack)
         }
     }
 }
