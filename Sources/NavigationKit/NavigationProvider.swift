@@ -10,8 +10,10 @@ public extension View {
 
 // MARK: - NavigationProviderModifier
 
-struct NavigationProviderModifier: ViewModifier {
-    func body(content: Content) -> some View {
+public struct NavigationProviderModifier: ViewModifier {
+    public init() {}
+    
+    public func body(content: Content) -> some View {
         NavigationProvider {
             content
         }
