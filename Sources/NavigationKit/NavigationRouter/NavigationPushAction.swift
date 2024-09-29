@@ -4,8 +4,8 @@ import SwiftUI
 public struct NavigationPushAction: Equatable {
     // MARK: - Lifecycle
     
-    init(_ view: UIView?) {
-        self.view = view
+    init(_ navigationController: UINavigationController?) {
+        self.navigationController = navigationController
     }
     
     // MARK: - Public
@@ -21,7 +21,7 @@ public struct NavigationPushAction: Equatable {
         
         defer { CATransaction.commit() }
         
-        self.view?.viewController?.navigationController?.pushViewController(
+        self.navigationController?.pushViewController(
             UIHostingController(rootView: view().navigation()),
             animated: animated
         )
@@ -38,7 +38,7 @@ public struct NavigationPushAction: Equatable {
         
         defer { CATransaction.commit() }
         
-        self.view?.viewController?.navigationController?.pushViewController(
+        self.navigationController?.pushViewController(
             viewController,
             animated: animated
         )
@@ -46,5 +46,5 @@ public struct NavigationPushAction: Equatable {
     
     // MARK: - Private
     
-    private weak var view: UIView?
+    private weak var navigationController: UINavigationController?
 }

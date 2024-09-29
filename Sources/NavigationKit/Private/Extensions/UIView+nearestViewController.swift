@@ -1,6 +1,6 @@
 import UIKit
 
-extension UIView {
+extension UIResponder {
     var viewController: UIViewController? {
         return self.nearestViewController()
     }
@@ -8,7 +8,7 @@ extension UIView {
     private func nearestViewController() -> UIViewController? {
         if let nextResponder = self.next as? UIViewController {
             return nextResponder
-        } else if let nextResponder = self.next as? UIView {
+        } else if let nextResponder = self.next {
             return nextResponder.nearestViewController()
         } else {
             return nil

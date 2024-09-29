@@ -3,8 +3,8 @@ import UIKit
 public struct DismissAction: Equatable {
     // MARK: - Lifecycle
     
-    init(_ view: UIView?) {
-        self.view = view
+    init(_ viewController: UIViewController?) {
+        self.viewController = viewController
     }
     
     // MARK: - Public
@@ -14,7 +14,7 @@ public struct DismissAction: Equatable {
         animated: Bool = true,
         completion: (() -> Void)? = nil
     ) {
-        self.view?.viewController?.dismiss(
+        self.viewController?.dismiss(
             animated: animated,
             completion: completion
         )
@@ -22,5 +22,5 @@ public struct DismissAction: Equatable {
     
     // MARK: - Private
     
-    private weak var view: UIView?
+    private weak var viewController: UIViewController?
 }

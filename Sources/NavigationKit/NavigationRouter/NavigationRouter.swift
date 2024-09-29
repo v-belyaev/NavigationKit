@@ -3,10 +3,10 @@ import SwiftUI
 public struct NavigationRouter: Equatable {
     // MARK: - Lifecycle
     
-    init(_ view: UIView?) {
-        self.pop = NavigationPopAction(view)
-        self.push = NavigationPushAction(view)
-        self.popToRoot = NavigationPopToRootAction(view)
+    init(_ navigationController: UINavigationController?) {
+        self.pop = NavigationPopAction(navigationController)
+        self.push = NavigationPushAction(navigationController)
+        self.popToRoot = NavigationPopToRootAction(navigationController)
     }
     
     // MARK: - Public
