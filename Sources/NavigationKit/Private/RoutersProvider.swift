@@ -52,7 +52,7 @@ struct RoutersProvider: UIViewRepresentable {
         
         func viewAttachedToWindow(_ view: UIViewControllerProvider) {
             self.router = Router(view)
-            self.navigationRouter = NavigationRouter(view.viewController?.navigationController)
+            self.navigationRouter = NavigationRouter(view)
         }
         
         func viewDetachedFromWindow(_ view: UIViewControllerProvider) {
