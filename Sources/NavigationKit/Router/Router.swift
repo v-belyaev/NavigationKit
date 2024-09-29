@@ -3,9 +3,9 @@ import SwiftUI
 public struct Router: Equatable {
     // MARK: - Lifecycle
     
-    init(_ viewController: UIViewController?) {
-        self.present = PresentAction(viewController)
-        self.dismiss = DismissAction(viewController)
+    init(_ view: UIView?) {
+        self.present = PresentAction(view)
+        self.dismiss = DismissAction(view)
     }
     
     // MARK: - Public

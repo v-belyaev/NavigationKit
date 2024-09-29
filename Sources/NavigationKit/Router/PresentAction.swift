@@ -4,8 +4,8 @@ import SwiftUI
 public struct PresentAction: Equatable {
     // MARK: - Lifecycle
     
-    init(_ viewController: UIViewController?) {
-        self.viewController = viewController
+    init(_ view: UIView?) {
+        self.view = view
     }
     
     // MARK: - Public
@@ -22,7 +22,7 @@ public struct PresentAction: Equatable {
         controller.modalTransitionStyle = transitionStyle
         controller.modalPresentationStyle = presentationStyle
         
-        self.viewController?.present(
+        self.view?.viewController?.present(
             controller,
             animated: animated,
             completion: completion
@@ -35,7 +35,7 @@ public struct PresentAction: Equatable {
         animated: Bool = true,
         completion: (() -> Void)? = nil
     ) {
-        self.viewController?.present(
+        self.view?.viewController?.present(
             viewController,
             animated: animated,
             completion: completion
@@ -44,5 +44,5 @@ public struct PresentAction: Equatable {
     
     // MARK: - Private
     
-    private weak var viewController: UIViewController?
+    private weak var view: UIView?
 }

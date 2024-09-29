@@ -3,8 +3,8 @@ import UIKit
 public struct NavigationPopToRootAction: Equatable {
     // MARK: - Lifecycle
     
-    init(_ navigationController: UINavigationController?) {
-        self.navigationController = navigationController
+    init(_ view: UIView?) {
+        self.view = view
     }
     
     // MARK: - Public
@@ -19,12 +19,12 @@ public struct NavigationPopToRootAction: Equatable {
         
         defer { CATransaction.commit() }
         
-        self.navigationController?.popToRootViewController(
+        self.view?.viewController?.navigationController?.popToRootViewController(
             animated: animated
         )
     }
     
     // MARK: - Private
     
-    private weak var navigationController: UINavigationController?
+    private weak var view: UIView?
 }
